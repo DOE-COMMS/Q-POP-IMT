@@ -1138,7 +1138,7 @@ while t < tf.value + 1e-9*tf.value:
             
     mu_norm_av = math.sqrt(assemble(mu*mu*dx)/vol)
     eta_norm_av = math.sqrt(assemble(eta*eta*dx)/vol)
-    V_VO2 = assemble(phi*ds(0)) / Lx.value * VUNIT  # Calculate voltage drop across VO2
+    V_VO2 = assemble(phi*ds(0)) / (vol / Ly.value) * VUNIT  # Calculate voltage drop across VO2
     Tav = assemble(T*dx) / vol * TEMPUNIT  # Calculate average temperature across VO2
     # R_VO2 = V_VO2 / (Lz.value*assemble(Jy*ds(0)) * CUNIT/TUNIT)  # Calculate VO2 resistance
     R_VO2 = V_VO2 / (assemble(Ib * ds(0)) / (vol / Ly.value) * CUNIT / TUNIT)
